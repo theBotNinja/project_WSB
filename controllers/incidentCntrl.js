@@ -24,12 +24,12 @@ const addIncident = asyncHandler(async (req, res) => {
         }else{
             res.status(500).json({message: "Something went wrong"})
         }
-
+*/
 });
 
 
 const getAllIncidents = asyncHandler(async(req,res) => {
-
+/*
     const incidents = await Incident.find({});
     const data = []
     for(const x of incidents){
@@ -49,11 +49,11 @@ const getAllIncidents = asyncHandler(async(req,res) => {
         }
         
     }
-    res.status(200).json(data)
+    res.status(200).json(data)*/
 });
 
 const acknowledgeInc = asyncHandler(async(req,res) => {
-
+/*
     const inc = req.params.id;
     const incident = await Incident.findById(inc);
     if(incident){
