@@ -7,7 +7,7 @@ const path = require('path')
 require('dotenv').config();
 
 const addIncident = asyncHandler(async (req, res) => {
-
+/* 
     const { user, report, pincodeOfIncident, mimeType, address } = req.body;
     const note= req.file.path
 
@@ -59,7 +59,7 @@ const acknowledgeInc = asyncHandler(async(req,res) => {
     if(incident){
         incident.isSeen = true;
         await incident.save()
-    }
+    } */
 })
 
 module.exports = {addIncident ,getAllIncidents,acknowledgeInc}
