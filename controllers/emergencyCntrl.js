@@ -9,33 +9,55 @@ let formattedAddress;
 
 
 const getData = async(url) => {
+  try {
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'womensafety/1.0 (officalwomensafety@gmail.com)' // IMPORTANT: Set a valid User-Agent
+      }
+    });
 
-  try{
-    
-    let {data} = await axios.get(url)
-    
-    return data
-  }catch(e){
-    console.log(e.message);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data && data.address) {
+      const address = data.address;
+      const pincode = address.postcode;
+      const fullAddress = data.display_name;
+
+      console.log('Full Address:', fullAddress);
+      console.log('Pincode:', pincode);
+      
+      return {
+        formatted_address: fullAddress,
+        pincode: pincode,
+        addressComponents: address
+      };
+    } else {
+      console.log('No address found for these coordinates.');
+      return null;
+    }
+  } catch (error) {
+    console.error('Failed to fetch address:', error);
   }
 }
 
 const sendemergencyCntrl = asyncHandler(async (req, res) => {
-  
   const {userId, lat, long} = req.body;
   if(!lat || !long){
     res.status(403).json({message: "latitude or longitude is missing"})
   }
-  const resp = await getData(`https://apis.mapmyindia.com/advancedmaps/v1/efd1bc9e76b7a36cb990af517a48f3c3/rev_geocode?lat=${lat}&lng=${long}`)
+  const resp = await getData(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${long}`)
   pincode = resp.results[0].pincode;
   formattedAddress = resp.results[0].formatted_address;
   const  user = await User.findById(userId);
-  const recipients = [user.emergencyMail];
-  recipients.push()
   if(!user){
     res.status(404).json({message: "User not found"})
   }
-  
+  const recipients = [user.emergencyMail];
+  recipients.push()
   if(user.extraEmail1){
     recipients.push(user.extraEmail1)
   }else if(user.extraEmail2){
