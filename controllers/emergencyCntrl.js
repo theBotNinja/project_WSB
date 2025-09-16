@@ -42,7 +42,9 @@ const sendemergencyCntrl = asyncHandler(async (req, res) => {
   if(!lat || !long){
     res.status(403).json({message: "latitude or longitude is missing"})
   }
+  console.log("in")
   const resp = await getData(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${long}`)
+  console.log("out")
   pincode = resp.results[0].pincode;
   formattedAddress = resp.results[0].formatted_address;
   const  user = await User.findById(userId);
@@ -60,15 +62,6 @@ const sendemergencyCntrl = asyncHandler(async (req, res) => {
   console.log("done1")
   
   await sendHelpEmail(recipients, lat, long , user.uname, pincode,formattedAddress);
-  const nearby =[]
-  const users = await User.find({pinCode: pincode});
-  if(users){
-    for(const x of users){
-      nearby.push(x.email);
-    }
-  }
-  
-  await sendHelpEmailContacts(nearby, lat, long , user.uname, pincode,formattedAddress)
   
   console.log("done2")
   
