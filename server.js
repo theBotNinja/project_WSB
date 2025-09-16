@@ -31,5 +31,4 @@ app.use("/api/v1/emergency", emergencyRoutes);
 app.use('/api/v1/chats',chatRoutes)
 
 app.use(errorHandler);
-console.log(process.env);
 start();
