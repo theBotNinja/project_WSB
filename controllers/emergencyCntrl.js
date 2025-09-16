@@ -10,11 +10,7 @@ let formattedAddress;
 
 const getData = async(url) => {
   try {
-    const response = await fetch(url, {
-      headers: {
-        'User-Agent': 'womensafety/1.0 (officalwomensafety@gmail.com)' // IMPORTANT: Set a valid User-Agent
-      }
-    });
+    const response = await axios.get(url);
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
