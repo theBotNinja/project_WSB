@@ -32,6 +32,7 @@ const getData = async(url) => {
         addressComponents: address
       };
     } else {
+      console.log(response)
       console.log('No address found for these coordinates.');
       return null;
     }
