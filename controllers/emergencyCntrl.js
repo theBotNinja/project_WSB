@@ -15,8 +15,8 @@ const getData = async(url) => {
         'User-Agent': 'womensafety/1.0 (devansh0814dj@gmail.com)' 
       }
     });
-
-    const data = await response.json();
+    
+    const data = response;
 
     if (data && data.address) {
       const address = data.address;
