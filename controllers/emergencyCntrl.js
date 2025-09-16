@@ -16,10 +16,6 @@ const getData = async(url) => {
       }
     });
 
-    if (!response.place_id) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
     const data = await response.json();
 
     if (data && data.address) {
