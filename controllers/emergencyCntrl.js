@@ -10,9 +10,13 @@ let formattedAddress;
 
 const getData = async(url) => {
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(url, {
+      headers: {
+        'User-Agent': 'womensafety/1.0 (devansh0814dj@gmail.com)' 
+      }
+    });
 
-    if (!response.ok) {
+    if (!response.place_id) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
