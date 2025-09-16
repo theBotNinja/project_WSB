@@ -20,7 +20,7 @@ const gmailContent = (verificationToken) => {
     <div style="background-color: #f0f0f0; padding: 20px; border-radius: 8px;">
       <p style="font-size: 16px; font-family: 'Arial', sans-serif; color: #444; text-align: center;">You have successfully verified your email.</p>
       <div style="text-align: center; margin-top: 20px;">
-        <a href="${process.env.BACKEND_URL}/api/v1/users/login" style="display: inline-block; background-color: #008080; color: #fff; font-size: 18px; font-family: 'Arial', sans-serif; text-decoration: none; padding: 10px 20px; border-radius: 5px; border: 2px solid #008080; transition: background-color 0.3s ease-in-out;">
+        <a href="http://${process.env.BACKEND_URL}/api/v1/users/login" style="display: inline-block; background-color: #008080; color: #fff; font-size: 18px; font-family: 'Arial', sans-serif; text-decoration: none; padding: 10px 20px; border-radius: 5px; border: 2px solid #008080; transition: background-color 0.3s ease-in-out;">
           Go to Home Page
         </a>
       </div>
@@ -90,7 +90,6 @@ const mapLocation = (lat,long,username,pincode,formatted_address) => `<html lang
     <center>
         <div class="abc" style="
             background-image: linear-gradient(to right top, #940915, #7c0916, #650b16, #4d0c14, #370b0f)">
-                    <img src="https://safesiren.vercel.app/static/media/logo.7f997af41092472d096a.png" style="width: 30%; margin-top: 25px; " alt="">
 
             <h1 style="color: red;">Alert</h1> <br />
             <p style="color:white;font-size: 18px;">Hey user you are recieving this mail because one of your close member added you as
@@ -180,7 +179,6 @@ const mapLocationNearby = (lat,long,username,pincode,formatted_address) => `<htm
     <center>
         <div class="abc" style="
             background-image: linear-gradient(to right top, #940915, #7c0916, #650b16, #4d0c14, #370b0f)">
-                    <img src="https://safesiren.vercel.app/static/media/logo.7f997af41092472d096a.png" style="width: 30%; margin-top: 25px; " alt="">
 
             <h1 style="color: red;">Emergency Situation In Your Area</h1> <br />
             <p style="color:white;font-size: 18px;">Hey user you are recieving this mail because Emergency triggered in your area</p>
