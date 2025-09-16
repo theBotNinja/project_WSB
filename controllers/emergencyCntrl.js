@@ -51,9 +51,8 @@ const sendemergencyCntrl = asyncHandler(async (req, res) => {
   if(!user){
     res.status(404).json({message: "User not found"})
   }
-  console.log(user)
+  console.log("user")
   const recipients = [user.emergencyMail];
-  recipients.push()
   if(user.extraEmail1){
     recipients.push(user.extraEmail1)
   }else if(user.extraEmail2){
