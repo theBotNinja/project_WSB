@@ -59,16 +59,17 @@ const sendemergencyCntrl = asyncHandler(async (req, res) => {
   await sendHelpEmail(recipients, lat, long , user.uname, pincode,formatted_address);
   
   console.log("done2")
-  
+   
 
   const emergency = await Emergency.create({
     user: userId,
+    pincode:pincode,
     emergencyLctOnMap: `https://maps.google.com/maps?q=${lat},${long}&hl=en&z=14&amp`,
     addressOfIncd: formattedAddress
   })
 
   res.status(200).json({message: "Sent an SOS for help"})
-  
+  console.log(emergency)
 
 });
 

@@ -11,6 +11,9 @@ const EmergencySchema = mongoose.Schema({
     addressOfIncd:{
         type:String
     },
+    pincode:{
+        type:Number
+    },
     isResolved:{
         type: Boolean,
         default: false
