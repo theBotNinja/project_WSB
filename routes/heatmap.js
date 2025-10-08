@@ -23,10 +23,9 @@ router.route("/").post(async (req, res) => {
 
     const daysOld = (now - new Date(d.createdAt)) / (1000 * 60 * 60 * 24);
     const weight = 1 / (1 + daysOld);
-    return {
-      coords: [lat, lon],
-      weight,
-    };
+    return [
+lat,lon,weight
+    ]
   });
   res.status(200).send({ points: data });
 });
