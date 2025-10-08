@@ -4,11 +4,12 @@ const { getData } = require("../controllers/emergencyCntrl");
 const { Emergency } = require("../models/emergencyModel");
 
 router.route("/").post(async (req, res) => {
-  if (req.body.userId) res.status(401).send({ error: "no userId" });
-  if (req.body.lat) res.status(401).send({ error: "no lat"});
-  if (req.body.long) res.status(401).send({ error: "no long"});
+  
   // start processing
+  console.log(req)
+  console.log(req.lat)
   console.log(req.body)
+  console.log(req.body.lat)
   const {pincode} = await getData(
     `https://nominatim.openstreetmap.org/reverse?format=json&lat=${req.body.lat}&lon=${req.body.long}`
   );
