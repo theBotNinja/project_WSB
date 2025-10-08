@@ -11,7 +11,6 @@ router.route("/").post(async (req, res) => {
   // after getting pincode filter for that pincode
   if (pincode) res.status(400).send({error:"can't get pincode"})
   dataPoints = await Emergency.find({ pincode });
-  console.log(dataPoints);
   const now = new Date();
   const data = dataPoints.map((d) => {
     const url = d.emergencyLctOnMap;
@@ -28,8 +27,7 @@ router.route("/").post(async (req, res) => {
       weight,
     };
   });
-  console.log(data);
-  res.status(200).send({data})
+  res.status(200).send({points:data})
 });
 
 module.exports = router;
