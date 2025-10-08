@@ -8,7 +8,7 @@ router.route("/").post(async (req, res) => {
   if (req.lat) res.status(401).send({ error: "no lat" ,req});
   if (req.long) res.status(401).send({ error: "no long" });
   // start processing
-  console.log(lat,long)
+  console.log(req)
   const {pincode} = await getData(
     `https://nominatim.openstreetmap.org/reverse?format=json&lat=${req.lat}&lon=${req.long}`
   );
