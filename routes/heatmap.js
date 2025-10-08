@@ -5,8 +5,8 @@ const { Emergency } = require("../models/emergencyModel");
 
 router.route("/").post(async (req, res) => {
   if (req.body.userId) res.status(401).send({ error: "no userId" });
-  if (req.body.lat) res.status(401).send({ error: "no lat" ,req});
-  if (req.body.long) res.status(401).send({ error: "no long" });
+  if (req.body.lat) res.status(401).send({ error: "no lat"});
+  if (req.body.long) res.status(401).send({ error: "no long"});
   // start processing
   console.log(req.body)
   const {pincode} = await getData(
