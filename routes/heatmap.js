@@ -4,12 +4,12 @@ const { getData } = require("../controllers/emergencyCntrl");
 const { Emergency } = require("../models/emergencyModel");
 
 router.route("/").post(async (req, res) => {
-  if (req.body.lat) res.status(401).send("not got lat");
   // start processing
   const {pincode} = await getData(
     `https://nominatim.openstreetmap.org/reverse?format=json&lat=${req.body.lat}&lon=${req.body.long}`
   );
   // after getting pincode filter for that pincode
+  if (pincode) res.status(400).send({error:"can't get pincode"})
   dataPoints = await Emergency.find({ pincode });
   console.log(dataPoints);
   const now = new Date();
