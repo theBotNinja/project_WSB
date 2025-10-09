@@ -11,10 +11,10 @@ const userInfo = asyncHandler(async (req,res) => {
 
 const registerUser = asyncHandler(async(req,res)=>{
     const {uname, email, password, phone,emergencyNo, emergencyMail, pincode} = req.body;
-    console.log(uname)
+    console.log(emergencyNo)
     if(!uname || !email || !password){
         res.status(400);
-        throw new Error("All fields are mandatory baby");
+        throw new Error("All fields are mandatory");
     }
 
     const userAvailable = await User.findOne({email: email});
