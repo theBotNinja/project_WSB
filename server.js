@@ -7,6 +7,7 @@ const incRoutes = require("./routes/incidentRoutes");
 const emergencyRoutes = require("./routes/emergencyRoutes");
 const chatRoutes = require('./routes/chatRoutes')
 const heatmap = require("./routes/heatmap")
+const chatBotRoutes = require("./routes/chatBotRoutes")
 require("dotenv").config();
 
 const app = express();
@@ -31,6 +32,7 @@ app.use("/api/v1/incidents", incRoutes);
 app.use("/api/v1/emergency", emergencyRoutes);
 app.use('/api/v1/chats',chatRoutes)
 app.use('/api/v1/map',heatmap)
+app.use('/api/v1/chatbot',chatBotRoutes)
 
 app.use(errorHandler);
 start();
