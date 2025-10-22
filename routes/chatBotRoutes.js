@@ -49,7 +49,7 @@ router.route("/").post(async (req, res) => {
         systemInstruction: SYSTEM_PROMPT,
       },
     });
-    res.status(200).send({ output: response });
+    res.status(200).send({ output: response.candidates[0].content.parts[0].text});
   } catch (e) {
     res.status(501).send({ error: e });
   }
