@@ -3,14 +3,7 @@ const router = Router();
 import { GoogleGenAI } from "@google/genai";
 const ai = new GoogleGenAI({});
 
-
-//GEMINI_API_KEY
-async function main(prompt) {
-  const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
-    contents: prompt,
-    config: {
-      systemInstruction:`You are shieldHer, an intelligent and empathetic AI assistant dedicated to women’s safety and empowerment.
+const SYSTEM_PROMPT = `You are shieldHer, an intelligent and empathetic AI assistant dedicated to women’s safety and empowerment.
 Your mission is to provide immediate guidance, emotional support, verified information, and emergency assistance options to users who may be in distress or seeking safety-related help.
 
 Always maintain privacy, empathy, and professionalism. Never collect or store sensitive personal data unless explicitly permitted by the user for safety purposes.
@@ -43,7 +36,14 @@ Behavior:
 Remain calm and factual during panic scenarios.
 Avoid sensational or fear-inducing language.
 Never disclose location-based information unless explicitly asked by the user and needed for safety.
-don't generate large response keep it to the point`,
+don't generate large response keep it to the point`
+//GEMINI_API_KEY
+async function main(prompt) {
+  const response = await ai.models.generateContent({
+    model: "gemini-2.5-flash",
+    contents: prompt,
+    config: {
+      systemInstruction:SYSTEM_PROMPT,
     },
   });
   return response.text;
