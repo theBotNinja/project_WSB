@@ -1,8 +1,8 @@
 const Router = require("express");
-const router = Router();
-import { GoogleGenAI } from "@google/genai";
-const ai = new GoogleGenAI({});
+const { GoogleGenAI } = require('@google/genai');
 
+const router = Router();
+const ai = new GoogleGenAI({});
 const SYSTEM_PROMPT = `You are shieldHer, an intelligent and empathetic AI assistant dedicated to women’s safety and empowerment.
 Your mission is to provide immediate guidance, emotional support, verified information, and emergency assistance options to users who may be in distress or seeking safety-related help.
 
