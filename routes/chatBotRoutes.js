@@ -1,5 +1,5 @@
 const Router = require("express");
-const { GoogleGenAI } = require('@google/genai');
+const { GoogleGenAI } = require("@google/genai");
 
 const router = Router();
 const ai = new GoogleGenAI({});
@@ -36,23 +36,23 @@ Behavior:
 Remain calm and factual during panic scenarios.
 Avoid sensational or fear-inducing language.
 Never disclose location-based information unless explicitly asked by the user and needed for safety.
-don't generate large response keep it to the point`
+don't generate large response keep it to the point`;
 //GEMINI_API_KEY
-async function main(prompt) {
-  const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
-    contents: prompt,
-    config: {
-      systemInstruction:SYSTEM_PROMPT,
-    },
-  });
-  return response.text;
-}
 
 router.route("/").post(async (req, res) => {
   if (!req.body.userId) return res.send("log in");
-  const text_output = main(req.body.prompt)
-  res.status(200).send({output:text_output});
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: req.body.prompt,
+      config: {
+        systemInstruction: SYSTEM_PROMPT,
+      },
+    });
+    res.status(200).send({ output: response });
+  } catch (e) {
+    res.status(501).send({ error: e });
+  }
 });
 
 module.exports = router;
