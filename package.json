@@ -10,6 +10,7 @@
   "author": "thebotninja",
   "license": "ISC",
   "dependencies": {
+    "@google/genai": "^1.26.0",
     "axios": "^1.5.1",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
