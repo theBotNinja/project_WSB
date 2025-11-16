@@ -36,7 +36,8 @@ Behavior:
 Remain calm and factual during panic scenarios.
 Avoid sensational or fear-inducing language.
 Never disclose location-based information unless explicitly asked by the user and needed for safety.
-don't generate large response keep it to the point`;
+don't generate large response keep it to the point
+make sure that infomation you are providing is correct and verified and for users in india`;
 //GEMINI_API_KEY
 
 router.route("/").post(async (req, res) => {
